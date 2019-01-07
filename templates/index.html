@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="{{url_for('static',filename='js/jquery-3.3.1.min.js')  }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="{{url_for('static',filename='css/stylesheet.css')  }}" rel="stylesheet ">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <title>{% block title %}智能家居管理系统{% endblock %}</title>
+    <style type="text/css">
+        p{
+            font-color: #f2a6ff;
+        }
+    </style>
+</head>
+<body>
+{% block head %}<div class="navbar navbar-inverse">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">智能家居管理系统</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">首页</a>
+                </li>
+                {% if session['user'] !=null %}
+                <li class="dropdown">
+                    <a href="/" class="dropdown-toggle"  data-toggle="dropdown" id="lg">{{ session['user'] }}</a>
+                    <ul class="dropdown-menu" aria-labelledby="lg">
+                        <li><a href="register" target="_blank">修改密码</a></li>
+                        <li><a href="register">修改信息</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="dropdown">
+                    <a href="/" class="dropdown-toggle"  data-toggle="dropdown" id="lg">登录/注册</a>
+                    <ul class="dropdown-menu" aria-labelledby="lg">
+                        <li><a href="login" target="_blank">登录</a></li>
+                        <li><a href="register">注册</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="menu_left bg-info">
+    <ul class="menu">
+        <li id="first_hover">
+            <a href="/">first</a>
+            <ul id="first_menu" style="display: none">
+                <li><a href="/">智能家居介绍</a></li>
+                <li><a href="/">物联网相关</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/">second</a>
+        </li>
+    </ul>
+
+</div>
+<script>
+    $('#first_hover').mousemove(function () {
+        $("#first_menu").attr("style","diplay:block")
+    });
+    $("#first_hover").mouseout(function () {
+        $("#first_menu").hide()
+    });
+</script>
+{% endblock %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

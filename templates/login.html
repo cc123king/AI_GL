@@ -1,0 +1,82 @@
+{% extends "index.html" %}
+{% block title %}
+登录
+{% endblock %}
+{% block content %}
+<div class="container" id="app1" style="width: 30%">
+    <div class="panel panel-default ">
+    <div class="panel-heading">
+        <div class="panel-title"><p>登录</p></div>
+    </div>
+        <div class="panel-body">
+            <p v-text="msg1"></p>
+            <input type="text" v-model="users.user" placeholder="邮箱/电话"><br>
+            <p>密码：</p>
+            <input type="password" v-model="users.password"><br>
+            <p>验证码：</p>
+            <input type="text" maxlength="4" v-model="users.yzm">
+            <img src="{{ url_for('static',filename='picture/yzm.jpg',_t=val1) }}" alt="正在刷新验证码"  id="yzm" /><br>
+            <button class="text-center" style="margin-top: 15%" v-on:click="login">登录</button>
+        </div>
+</div>
+</div>
+    <script>
+    $(document).ready(function () {
+
+
+    $('#yzm').bind('click',function () {
+        $.ajax({
+            url:'/flushyzm',
+            type:'GET',
+            success:function (res) {
+                if (res==='OK'){
+                    var date=new Date().getTime()
+                    var path='../static/picture/yzm.jpg'+'?'+date;
+                    $('#yzm').attr('src',path)
+                }
+            }
+        })
+    })
+        });
+    var app=new Vue({
+       el:'#app1',
+       data:{
+           msg1:'用户名：',
+           users:{
+               user: '',
+               password: '',
+               yzm: '',
+
+           }} ,
+        methods:{
+           login:function () {
+               var self =this
+               $.ajax({
+                   url:'/login_yz',
+                   type:'POST',
+                   data:{
+                       users:self.users.user,
+                       password: self.users.password,
+                       yzm:self.users.yzm
+                   },
+                   success:function (res) {
+                       if(res==='error1'){
+                           alert('验证码出错');
+                           location.reload()
+                       }
+                       else if(res==='error2'){
+                           alert('密码错误');
+                           location.reload()
+                       }
+                       else {
+                           location.href='/'
+                       }
+
+                   }
+               });
+           }
+        }
+
+    });
+    </script>
+{% endblock %}

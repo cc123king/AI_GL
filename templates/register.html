@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block title %}
+修改密码
+{% endblock %}
+{% block content %}
+<div class="container" id="app2" style="width: 20%">
+    <div class="panel panel-danger">
+    <div class="panel-heading">
+        <div class="panel-title"><p>修改密码</p></div>
+    </div>
+        <div class="panel-body">
+            <p v-text="msg1"></p>
+            <input type="password" v-model="ups.old_password"> <br>
+            <p v-text="msg2"></p>
+            <input type="password" v-model="ups.new_password"> <br>
+            <p v-text="msg3"></p>
+            <input type="password" v-model="ups.re_new_password"> <br>
+            <button @click.stop="up_s" style="margin-top: 5px">提交</button>
+        </div>
+    </div>
+</div>
+    <script>
+        var app =new Vue({
+            el:'#app2',
+            data:{
+                msg1:'请输入原密码：',
+                msg2:'请输入新密码：',
+                msg3:'请再次输入：',
+                ups:{
+                    old_password:'',
+                    new_password:'',
+                    re_new_password:''
+                },
+
+            },
+            methods:{
+              up_s(){
+                  var self =this
+                  $.ajax({
+                      url:'/updates',
+                      type:'POST',
+                      data:{
+                          old_password:self.ups.old_password,
+                          new_password: self.ups.new_password,
+                          re_new_password:self.ups.re_new_password
+                      },
+                      success:function (res) {
+                          if (res==='error1'){
+                              alert('原密码输入错误，请重试！');
+                              location.reload()
+                          }
+                          else if(res==='error2'){
+                              alert('两次密码输入不一致');
+                              location.reload()
+                          }
+                          else {
+                              alert('修改成功。');
+                              location.href='/'
+                          }
+                      }
+                  })
+              }
+            }
+
+        })
+    </script>
+{% endblock %}
