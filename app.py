@@ -68,7 +68,10 @@ def login():
     data=time.time()
     return render_template('login.html',val1=data)
 
-
+@app.route('/nav_page')
+def nav():
+    data=time.time()
+    return render_template('nav_page.html',val1=data)
 if __name__ == '__main__':
     db.drop_all()
     db.create_all()

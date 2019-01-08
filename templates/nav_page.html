@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>欢迎使用</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/stylesheet')}}">
+        <script src="{{url_for('static',filename='js/jquery-3.3.1.min.js')  }}"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container" style="width:30%">
+            <p v-text='msg1'></p>
+            <input type="text" v-model="users.user"><br>
+            <p v-text='msg2'></p>
+            <input type="password" v-model="users.password"><br>
+            <p v-text="msg3"></p>
+            <input type="text" maxlength=4 v-model="users.yzm">
+            <img id='yzm'  src="{{url_for('static',filename='picture/yzm.jpg',_t=val1)}}" alt="正在刷新验证码"><br>
+            <button class='btn-default'>登录</button>
+            <button class="btn-default" style="margin-left:30px">以游客身份进入</button>            
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#yzm").bind('click',function(){
+                    $.ajax({
+                        url:'/flushyzm',
+                        type:'GET',
+                        success:function(res){
+                            if(res==='OK'){
+                                var date1=new Date().getTime();
+                                path='../static/picture/yzm.jpg'+'?'+date1;
+                                $('#yzm').attr('src',path)
+                            }
+                        }
+                    })
+//                    var date1=new Date().getTime()
+  //                  $('yzm').attr('src','./static/picture/yzm.jpg'+'?'+date1)
+                })
+            })
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    </body>
+</html>
