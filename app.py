@@ -9,7 +9,6 @@ app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:15370040@127.0.0.1/AI_gl'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db=SQLAlchemy(app)
 flask_bootstrap=flask_bootstrap.Bootstrap(app)
-
 class user(db.Model):
     __tablename__='users'
     usename=db.Column(db.String(12),primary_key=True)

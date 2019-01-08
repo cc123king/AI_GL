@@ -36,7 +36,7 @@ def dr():
         draw.text((30*t+8,8),item,font=font,fill=randcolor2())
 
     image=image.filter(ImageFilter.DETAIL)
-    image.save('/home/king/PycharmProjects/AI_gl/static/picture/yzm.jpg','jpeg')
+    image.save('static/picture/yzm.jpg','jpeg')
     return l
 
 
