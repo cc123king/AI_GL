@@ -7,34 +7,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     </head>
+    <style>
+        .loginbox{
+            background-color: lightgray;
+            border-radius: 5px;
+            padding-bottom: 18px;
+        }
+        .loginbox h3{
+            border-radius: 5px;
+            border-bottom: 3px solid lightpink;
+        }
+    </style>
     <body>
-        <div class="container" id="app3" style="width:30%">
+        <div style="text-align:center;">
+            <b style="color:blueviolet;font-size: 65px;font-weight: 800;">智能家居管理系统</b>
+        </div>
+        <div class="loginbox container" id="app3" style="width:250px ;margin-top: 7%">
+            <h3>登录</h3>
             <p v-text='msg1'></p>
             <input type="text" v-model="users.user"><br>
             <p v-text='msg2'></p>
             <input type="password" v-model="users.password"><br>
             <p v-text="msg3"></p>
             <input type="text" maxlength=4 v-model="users.yzm">
-            <img id='yzm'  src="{{url_for('static',filename='picture/yzm.jpg',_t=val1)}}" alt="正在刷新验证码"><br>
-            <button class='btn-default' @click='login'>登录</button>
-            <button class="btn-default" style="margin-left:30px">以游客身份进入</button>            
+            <img id='yzm' style="margin-top:3px" src="{{url_for('static',filename='picture/yzm.jpg',_t=val1)}}" alt="正在刷新验证码"><br>
+            <button class='btn-default' style="margin-top:3px"  @click='login'>登录</button>
+            <button class="btn-default" style="margin-left:30px;margin-top: 3px">以游客身份进入</button>            
         </div>
         <script>
             $(document).ready(function(){
-                $("#yzm").bind('click',function(){
+                $('#yzm').bind('click',function(){
                     $.ajax({
                         url:'/flushyzm',
                         type:'GET',
                         success:function(res){
                             if(res==='OK'){
-                                var date1=new Date().getTime();
-                                path='../static/picture/yzm.jpg'+'?'+date1;
+                                var data = new Date().getTime();
+                                var path = "../static/picture/yzm.jpg"+"?"+data;
                                 $('#yzm').attr('src',path)
                             }
                         }
-            })
-                    });
-                    var app = new Vue({
+                    })
+                })
+            });
+                   var app = new Vue({
                         el:'#app3',
                         data:{
                             msg1:'用户名：',
@@ -76,7 +92,7 @@
                     })
 //                    var date1=new Date().getTime()
   //                  $('yzm').attr('src','./static/picture/yzm.jpg'+'?'+date1)
-                })
+                
         </script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
