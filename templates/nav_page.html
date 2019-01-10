@@ -17,13 +17,15 @@
             border-radius: 5px;
             border-bottom: 3px solid lightpink;
         }
+       
+       
     </style>
     <body>
         <div style="text-align:center;">
             <b style="color:blueviolet;font-size: 65px;font-weight: 800;">智能家居管理系统</b>
         </div>
         <div class="loginbox container" id="app3" style="width:250px ;margin-top: 7%">
-            <h3>登录</h3>
+            <h3>登录 <img src="../static/picture/close.jpg" id='close_btn' style="width: 30px;height: 30px;float: right;cursor: pointer;"></h3>
             <p v-text='msg1'></p>
             <input type="text" v-model="users.user"><br>
             <p v-text='msg2'></p>
