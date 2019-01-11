@@ -73,12 +73,20 @@
             </ul>
 
 <script>
-    $('#first_hover').mousemove(function () {
-        $("#first_menu").attr("style","diplay:block")
+    $('#first_hover').mouseover(function () {
+        $("#first_menu").attr("style","diplay:block");
+        $("#first_menu").mouseover(function(){
+            $("#first_menu").attr("style","diplay:block");
+            $("#first_hover").mouseout(function () {
+                $("#first_menu").mouseout(function(){
+                    $("#first_menu").hide()
+                }) 
+                
+                });
+
+            })
     });
-    $("#first_hover").mouseout(function () {
-        $("#first_menu").hide()
-    });
+    
 </script>
 {% endblock %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
