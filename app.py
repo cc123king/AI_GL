@@ -20,6 +20,16 @@ class Text(db.Model):
     textname=db.Column(db.BLOB)
     content=db.Column(db.BLOB)
 
+@app.route('/read2/<num>')
+def read2(num):
+    if num == '1':
+        file1=db.session.query(Text).filter(Text.id==1).first()
+        print(file1.textname.decode('utf8'))
+        return render_template('txt.html',filename1=file1.textname.decode('utf8'),text1=file1.content.decode('utf8'))
+    else:
+        return "OK"
+
+
 @app.route('/')
 def hello_world():
     return render_template('index.html')
