@@ -60,17 +60,18 @@
     <ul class="menu">
         <li id="first_hover">
             <a href="/">first</a>
-            <ul id="first_menu" style="display: none">
-                <li><a href="/">智能家居介绍</a></li>
-                <li><a href="/">物联网相关</a></li>
-            </ul>
-        </li>
+                   </li>
         <li>
             <a href="/">second</a>
         </li>
     </ul>
 
 </div>
+ <ul id="first_menu" style="display: none">
+                <li><a href="/">智能家居介绍</a></li>
+                <li><a href="/">物联网相关</a></li>
+            </ul>
+
 <script>
     $('#first_hover').mousemove(function () {
         $("#first_menu").attr("style","diplay:block")
