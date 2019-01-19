@@ -2,6 +2,7 @@ from flask import Flask,render_template,request,session
 import flask_bootstrap,time
 from flask_sqlalchemy import SQLAlchemy
 from yzm import dr
+from secure_pass import pa_jm
 
 app = Flask(__name__)
 app.secret_key='a5s1d3q7s.d-1qdf152'
@@ -12,7 +13,7 @@ flask_bootstrap=flask_bootstrap.Bootstrap(app)
 class user(db.Model):
     __tablename__='users'
     usename=db.Column(db.String(12),primary_key=True)
-    password=db.Column(db.String(20))
+    password=db.Column(db.String(90))
 
 class Text(db.Model):
     __tablename__='texts'
@@ -56,7 +57,7 @@ def login_yz():
         return 'error1'
     else:
         list1 =db.session.query(user).filter(user.usename==users).first()
-        if list1.password !=password:
+        if list1.password !=pa_jm('admin',password):
             l=dr()
             return 'error2'
         else:
@@ -65,18 +66,19 @@ def login_yz():
             return 'OK'
 @app.route('/updates',methods=['POST'])
 def updates():
-    old_passowrd=request.form.get('old_password')
+    old_password=request.form.get('old_password')
     new_password=request.form.get('new_password')
     re_new_password=request.form.get('re_new_password')
+    mm=pa_jm('admin',old_password)
     str0 =db.session.query(user).filter(user.usename=='admin').first()
-    if old_passowrd !=str0.password:
+    if mm !=str0.password:
         return 'error1'
     elif new_password !=re_new_password:
         print(new_password)
         print(re_new_password)
         return 'error2'
     else:
-        str0.password=new_password
+        str0.password=pa_jm('admin',new_password)
         db.session.commit()
         return 'ok'
 @app.route('/register')
@@ -94,8 +96,8 @@ def nav():
 if __name__ == '__main__':
     db.drop_all()
     db.create_all()
-
-    user1=user(usename=u'admin',password=u'admin')
+    x=pa_jm('admin','admin')
+    user1=user(usename=u'admin',password=x)
     db.session.add(user1)
     db.session.commit()
     l = dr()
