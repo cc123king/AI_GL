@@ -21,6 +21,12 @@ class Text(db.Model):
     textname=db.Column(db.BLOB)
     content=db.Column(db.BLOB)
 
+class Equipment(db.Model):
+    __tablename__='equipment'
+    id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    name=db.Column(db.String(20))
+    value=db.Column(db.Integer)
+
 @app.route('/read2/<num>')
 def read2(num):
     if num == '1':
@@ -93,16 +99,16 @@ def login():
 def nav():
     data=time.time()
     return render_template('nav_page.html',val1=data)
-if __name__ == '__main__':
-    db.drop_all()
-    db.create_all()
-    x=pa_jm('admin','admin')
-    user1=user(usename=u'admin',password=x)
-    db.session.add(user1)
-    db.session.commit()
-    l = dr()
-    text1=Text(textname=u'物联网在智能家居中应用情况分析'.encode('utf8'),content=u"1、对智能家居的相关认识智能家居，或称智能住宅。首先，它需要在一个家庭中建立一个通讯网络，为家庭信息提供必要的通路，在家庭网络操作系统的控制下，通过相应的硬件和执行机构，实现对连入家庭网络的所有家电和设备的控制和监测；其次，它们都要通过一定的媒介，构成与外界的通讯通道，以实现与家庭以外的世界沟通信息，满足远程控制、监测和交换信息的需求，其最终目的都是满足人们在家庭中对安全、舒适、方便地工作和生活的需求。智能家居是以家为平台，兼备自动化、智能化的高效、舒适、安全、便利的家居环境。智能家居是一个典型的集计算机、通讯和消费于一体的3C系统，是整个世界形成的一个巨型网络的末端，俗称是该网络的“最后100m”。".encode('utf8'))
-    db.session.add(text1)
-    db.session.commit()
-    print("".join(l))
-    app.run(debug=True,host='0.0.0.0',port=9090)
+
+db.drop_all()
+db.create_all()
+x=pa_jm('admin','admin')
+user1=user(usename=u'admin',password=x)
+db.session.add(user1)
+db.session.commit()
+l = dr()
+text1=Text(textname=u'物联网在智能家居中应用情况分析'.encode('utf8'),content=u"1、对智能家居的相关认识智能家居，或称智能住宅。首先，它需要在一个家庭中建立一个通讯网络，为家庭信息提供必要的通路，在家庭网络操作系统的控制下，通过相应的硬件和执行机构，实现对连入家庭网络的所有家电和设备的控制和监测；其次，它们都要通过一定的媒介，构成与外界的通讯通道，以实现与家庭以外的世界沟通信息，满足远程控制、监测和交换信息的需求，其最终目的都是满足人们在家庭中对安全、舒适、方便地工作和生活的需求。智能家居是以家为平台，兼备自动化、智能化的高效、舒适、安全、便利的家居环境。智能家居是一个典型的集计算机、通讯和消费于一体的3C系统，是整个世界形成的一个巨型网络的末端，俗称是该网络的“最后100m”。".encode('utf8'))
+db.session.add(text1)
+db.session.commit()
+#print("".join(l))
+#    app.run(debug=True,host='0.0.0.0',port=9090)
