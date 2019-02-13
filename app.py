@@ -39,7 +39,8 @@ def read2(num):
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
+    data=time.time()
+    return render_template('nav_page.html',val1=data)
 
 @app.route('/read')
 def read_1():
@@ -95,10 +96,10 @@ def login():
     data=time.time()
     return render_template('login.html',val1=data)
 
-@app.route('/nav_page')
+@app.route('/index')
 def nav():
     data=time.time()
-    return render_template('nav_page.html',val1=data)
+    return render_template('index.html')
 
 db.drop_all()
 db.create_all()

@@ -34,7 +34,7 @@
             <input type="text" maxlength=4 v-model="users.yzm">
             <img id='yzm' style="margin-top:3px" src="{{url_for('static',filename='picture/yzm.jpg',_t=val1)}}" alt="正在刷新验证码"><br>
             <button class='btn-default' style="margin-top:3px"  @click='login'>登录</button>
-            <button class="btn-default" style="margin-left:30px;margin-top: 3px">以游客身份进入</button>            
+            <button class="btn-default" style="margin-left:30px;margin-top: 3px" @click='forward_index'>以游客身份进入</button>            
         </div>
         <script>
             $(document).ready(function(){
@@ -74,6 +74,9 @@
                                 else{
                                     this.flag =true;
                                 }
+                            },
+                            forward_index(){
+                                location.href='/index'
                             },
                             login(){
                                 var self=this
