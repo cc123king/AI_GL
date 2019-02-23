@@ -17,12 +17,17 @@
             border-radius: 5px;
             border-bottom: 3px solid lightpink;
         }
+        body{
+            background-image: url('../static/picture/bg_1.jpeg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
        
        
     </style>
     <body>
-        <div style="text-align:center;">
-            <b style="color:blueviolet;font-size: 65px;font-weight: 800;">智能家居管理系统</b>
+        <div style="text-align: left">
+            <img src="../static/picture/title2.jpg" style="width:45%;height:38%" alt="title">
         </div>
         <div class="loginbox container" v-show='flag' id="app3" style="width:250px ;margin-top: 7%">
             <h3>登录 <img src="../static/picture/close.jpg" @click="closebtn" id='close_btn' style="width: 30px;height: 30px;float: right;cursor: pointer;"></h3>
@@ -98,7 +103,7 @@
                                             location.reload()
                                         }
                                         else {
-                                            location.href='/'
+                                            location.href='/index'
                                         }
                                     }
                                 })
