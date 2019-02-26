@@ -46,7 +46,7 @@
                     <a href="/" class="dropdown-toggle"  data-toggle="dropdown" id="lg">登录/注册</a>
                     <ul class="dropdown-menu" aria-labelledby="lg">
                         <li><a href="/login" target="_blank">登录</a></li>
-                        <li><a href="/register">注册</a></li>
+                        <li><a href="/register">修改密码</a></li>
                     </ul>
                 </li>
                 {% endif %}
@@ -56,44 +56,56 @@
 </div>
 {% endblock %}
 {% block content %}
-<div class="menu_left">
-    <ul class="menu">
-        <li id="first_hover">
-            <a href="/">first</a>
-                   </li>
-        <li>
-            <a href="/">second</a>
-        </li>
-    </ul>
-
+<div id='btn_2'>
+    <a href="/read2/1">智能家居介绍</a>
 </div>
-<div style="width: 200px;text-align: center;">
-    <button style="position:fixed;z-index:2;">点击一下</button>
-    <div style="width:300px;">
-    <img src="{{url_for('static',filename='picture/btn_1.jpeg')}}" alt="btn_1" style="border-radius:50px;line-height: 50px;position:absolute;z-index:4;width: 150px;height:auto;max-width: 100%;max-height: 100%;">\
-    </div>
-
+<div>
+    <img usemap="#gn" usemap="gn"  id='btn_1' src="../static/picture/btn_2.jpeg" alt="">
+    <map id='gn' name="gn">
+        <area shape="circle" coords="200,300,30" target="_self" href="/" alt='首页'>
+    </map>
 </div>
- <ul id="first_menu" style="display: none">
-                <li><a href="/read2/1" >智能家居介绍</a></li>
-                <li><a href="/read2/2">物联网相关</a></li>
-            </ul>
 
 <script>
-    $('#first_hover').mouseover(function () {
-        $("#first_menu").attr("style","diplay:block");
-        $("#first_menu").mouseover(function(){
-            $("#first_menu").attr("style","diplay:block");
-            $("#first_hover").mouseout(function () {
-                $("#first_menu").mouseout(function(){
-                    $("#first_menu").hide()
-                }) 
-                
-                });
-
-            })
-    });
-    
+var btn = document.getElementById('btn_1');
+btn.style.width='60%';
+btn.style.marginLeft='20%';
+btn.style.marginTop='-8%';
+btn.style.zIndex='-3';
+btn.style.position='fixed';
+var img_1 = document.getElementById('gn');
+s=(btn)=>{
+    var imgW = btn.naturalWidth;
+    var imgH = btn.naturalHeight;
+    var imgw = btn.width;
+    var imgh = btn.height;
+    var W_cs = imgw/imgW;
+    var H_cs = imgh/imgH;
+    var x=[];
+    for (var i = 0;i<img_1.children.length;i++){
+        x.push(img_1.children[i].getAttribute('coords'));
+    };
+    console.log(x);
+    var c = x[0].split(',');
+    console.log(c);
+    var z=[];
+    for (var i=0;i<img_1.children.length;i++){
+        for(var j=0;j<x[i].split(',').length;j++){
+            z.push(x[i].split(',')[j]);
+        };
+    };
+    console.log(c[0]); 
+    console.log(imgW);
+    var btn_3 = document.getElementById('btn_2');
+    btn_3.style.margin='3%';
+    btn_3.style.borderRadius='150px';
+    btn_3.style.lineHeight='150px';
+    btn_3.style.height='150px';
+    btn_3.style.width='150px';
+    btn_3.style.textAlign='center';
+    btn_3.style.backgroundColor='lightblue';
+}    
+s(btn);
 </script>
 {% endblock %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
