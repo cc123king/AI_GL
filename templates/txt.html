@@ -2,14 +2,20 @@
 {% block title %}
 {{filename}}
 {% endblock %}
+{% block head1 %}
+<style type='text/css'>
+    body{
+        background-image:url('../static/picture/bg_2.png');
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+    }
+</style>
+{% endblock %}
 {% block content %}
 <div>
     <h1 style="text-align:center">{{filename1}}</h1>
 </div>
-<div style='width:30%;margin-left:20%;' id='content_txt' class="comtainer ">
+<div style='width:30%;margin-top:2%;' id='content_txt' class="container ">
     {{text1}}
 </div>
 {% endblock %}
-<div>
-    <p>power by 李金 Lijin</p>
-</div>

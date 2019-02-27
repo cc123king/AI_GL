@@ -101,6 +101,10 @@ def nav():
     data=time.time()
     return render_template('index.html')
 
+@app.route('/gl')
+def gl():
+    return render_template('gl.html')
+
 db.drop_all()
 db.create_all()
 x=pa_jm('admin','admin')

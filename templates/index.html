@@ -13,7 +13,27 @@
         p{
             color: #000;
         }
+	.footer{
+		margin-top:35%;
+		border-radius:15px;
+		margin-bottom:0;
+		text-align:center;
+		background-color:black;
+		color:white
+	}
+	.bd_circle{
+	    border-radius:150px;
+	    width:150px;
+	    line-height:150px;		    
+	    height:150px;
+	    text-align:center;
+	    background-color:lightpink;
+	    float:right;
+	}
     </style>
+    {% block head1 %}
+
+    {% endblock %}
 </head>
 <body>
 {% block head %}<div class="navbar navbar-inverse">
@@ -43,7 +63,7 @@
                 </li>
                 {% else %}
                 <li class="dropdown">
-                    <a href="/" class="dropdown-toggle"  data-toggle="dropdown" id="lg">登录/注册</a>
+                    <a href="/" class="dropdown-toggle"  data-toggle="dropdown" id="lg">登录/修改密码</a>
                     <ul class="dropdown-menu" aria-labelledby="lg">
                         <li><a href="/login" target="_blank">登录</a></li>
                         <li><a href="/register">修改密码</a></li>
@@ -65,14 +85,16 @@
         <area shape="circle" coords="200,300,30" target="_self" href="/" alt='首页'>
     </map>
 </div>
-
+<div class='bd_circle'style='margin-right:5%'>
+	<a href='/gl' style='color:deeppink'>家居管理</a>
+</div>
 <script>
 var btn = document.getElementById('btn_1');
 btn.style.width='60%';
 btn.style.marginLeft='20%';
 btn.style.marginTop='-8%';
 btn.style.zIndex='-3';
-btn.style.position='fixed';
+btn.style.position='absolute';
 var img_1 = document.getElementById('gn');
 s=(btn)=>{
     var imgW = btn.naturalWidth;
@@ -111,6 +133,10 @@ s(btn);
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+{% block footer %}
+<div class='footer'> 
+	<span>power by Lijin</span>
+</div>
+{% endblock %}
 </body>
 </html>
