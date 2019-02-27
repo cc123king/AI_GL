@@ -2,8 +2,41 @@
 {% block title %}
 家居管理
 {% endblock %}
+{% block head1 %}
+<style type='text/css'>
+    .btn_control{
+    	width:5%;
+		height:15%;
+    }
+	#pic{
+		width:70%;
+		height:20%;
+	}
+</style>
+{% endblock %}
 {% block content %}
-<div id='form_1'>
-    
+<div id='form_1' style='margin-left:15%;height:10%'>
+	<a  id='pageup'><img class='btn_control' src='../static/picture/pageup.jpeg'></a> 
+    <img id='pic' src='' alt='轮播图'/>
+    <a id='pagedown'><img class='btn_control'  src='../static/picture/pagedown.jpeg'></a>
 </div>
+<script>
+	var img = document.getElementById('pic');
+    function initMove() {
+		this.img.setAttribute('src','../static/picture/1.png');
+	}
+    initMove();
+    var count = 1;
+    function fMove(){
+		if(count===3){
+			count = 1;
+			img.src ='../static/picture/1.png';
+    	}
+		else{
+			count++;
+			img.src = '../static/picture/'+count+'.png';
+		}
+	}
+    var scrollMove = setInterval(fMove,2500);
+</script>
 {% endblock %}
