@@ -56,7 +56,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/king/Documents/AI_GL/AI_GL/venv"
+set -gx VIRTUAL_ENV "/home/king/文档/AI_GL/AI_GL/venv"
 
 # https://github.com/fish-shell/fish-shell/issues/436 altered PATH handling
 if test (echo $FISH_VERSION | tr "." "\n")[1] -lt 3

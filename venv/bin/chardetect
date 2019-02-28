@@ -1,5 +1,4 @@
-#!/home/king/Documents/AI_GL/AI_GL/venv/bin/python3
-
+#!/home/king/文档/AI_GL/AI_GL/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

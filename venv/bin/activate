@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/king/Documents/AI_GL/AI_GL/venv"
+VIRTUAL_ENV="/home/king/文档/AI_GL/AI_GL/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
